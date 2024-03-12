@@ -1,0 +1,455 @@
+.h1 {
+  font-family: "proxima-nova"!important;
+}
+
+.h2 {
+  font-family: "proxima-nova"!important;
+}
+
+.h3 {
+  font-family: "proxima-nova"!important;
+  font-size:32px;
+}
+
+.h4 {
+  font-family: "proxima-nova"!important;
+
+}
+
+.h5 {
+  font-family: "proxima-nova"!important;
+}
+
+.btn-outline-new:hover {
+    color: #fff!important;
+    background-color: #767B88!important;
+    border-color: #767B88!important;
+
+}
+
+.btn-outline-new{
+    border: 1px solid #767B88;
+    color : #767B88;
+}
+
+.btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.1rem #767B88;
+}
+
+
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+.page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #17a2b8;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+
+/* Add a black background color to the top navigation */
+.topnav {
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  border-bottom: 3px solid transparent;
+}
+
+.topnav a:hover {
+  border-bottom: 3px solid #ED7640;
+}
+
+.topnav a.active {
+  border-bottom: 3px solid #ED7640;
+}}
+
+
+
+
+
+/*----  Main Style  ----*/
+.zoom {
+  padding: 10px;
+  background-color: green;
+  transition: transform .2s;
+  width: 10px;
+  height: 10px;
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  -ms-transform: scale(1.1); /* IE 9 */
+  -webkit-transform: scale(1.1); /* Safari 3-8 */
+  transform: scale(1.1);
+}
+
+.zoom_icon {
+  padding: 10px;
+  transition: transform .2s;
+  width: 10px;
+  height: 10px;
+  margin: 0 auto;
+}
+
+.zoom_icon:hover {
+  -ms-transform: scale(1.7); /* IE 9 */
+  -webkit-transform: scale(1.7); /* Safari 3-8 */
+  transform: scale(1.7);
+}
+
+
+.cont{
+    width: 90%;
+    height: 0;
+    overflow: hidden;
+
+    transition: all 0.6s ease;
+}
+
+
+.card-body:hover > .cont{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+    height: 48px;
+}
+
+
+
+/* The side navigation menu */
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.button-image{
+                position  :absolute;
+                height    :30px;
+                width     :30px;
+
+                animation :up_down 2s ease infinite;
+            }
+
+            @keyframes up_down{
+                0%{
+                    top :10px;
+                }
+                50%{
+                    top :24px;
+                }
+                100%{
+                    top :10px;
+                }
+            }
+
+            @-webkit-keyframes up_down{
+                0%{
+                    top :10px;
+                }
+                50%{
+                    top :24px;
+                }
+                100%{
+                    top :10px;
+                }
+            }
+
+            @-khtml-keyframes up_down{
+                0%{
+                    top :10px;
+                }
+                50%{
+                    top :24px;
+                }
+                100%{
+                    top :10px;
+                }
+            }
+
+
+
+
+
+
+
+
+
+.zoom-in-out-box {
+  animation: zoom-in-zoom-out 1s ease infinite;
+}
+
+@keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.1, 1.1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+
+.heading {
+  font-size: 25px;
+  margin-right: 25px;
+}
+
+.fa {
+  font-size: 25px;
+}
+
+.checked {
+  color: orange;
+}
+
+/* Three column layout */
+.side {
+  float: right;
+  width: 15%;
+  margin-top: 5px;
+}
+
+.middle {
+  float: left;
+  width: 70%;
+  margin-top: 10px;
+  margin-left:10px;
+  margin-right:20px;
+}
+
+/* Place text to the right */
+.right {
+  text-align: right;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* The bar container */
+.bar-container {
+  width: 100%;
+  background-color: #f1f1f1;
+  text-align: center;
+  color: white;
+}
+
+/* Individual bars */
+.bar-5 {width: 60%; height: 18px; background-color: #04AA6D;}
+.bar-4 {width: 30%; height: 18px; background-color: #2196F3;}
+.bar-3 {width: 10%; height: 18px; background-color: #00bcd4;}
+.bar-2 {width: 4%; height: 18px; background-color: #ff9800;}
+.bar-1 {width: 15%; height: 18px; background-color: #f44336;}
+
+/* Responsive layout - make the columns stack on top of each other instead of next to each other */
+@media (max-width: 400px) {
+  .side, .middle {
+    width: 100%;
+  }
+  /* Hide the right column on small screens */
+  .right {
+    display: none;
+  }
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/*switch styles*/
+
+div.btn-container{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+div.btn-container i{
+    display: inline-block;
+    position: relative;
+    top: -9px;
+}
+
+label {
+    font-size: 13px;
+    color: #424242;
+    font-weight: 500;
+}
+
+.btn-color-mode-switch{
+    display: inline-block;
+    margin: 0px;
+    position: relative;
+}
+
+.btn-color-mode-switch > label.btn-color-mode-switch-inner{
+    margin: 0px;
+    width: 180px;
+    height: 27px;
+    background: #E0E0E0;
+    border-radius: 29px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+    /*box-shadow: 0px 0px 8px 0px rgba(17, 17, 17, 0.34) inset;*/
+    display: block;
+}
+
+.btn-color-mode-switch > label.btn-color-mode-switch-inner:before{
+    content: "Importance";
+    position: absolute;
+    font-size: 14px;
+    font-weight: 500;
+    top: 3px;
+    right: 20px;
+
+}
+
+.btn-color-mode-switch > label.btn-color-mode-switch-inner:after{
+    content: "Attributions";
+    width: 80px;
+    height: 24px;
+    background: #fff;
+    border-radius: 21px;
+    position: absolute;
+    left: 5px;
+    right:5px;
+    top: 2.1px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0px 0px 6px -2px #111;
+    padding: 5px 5px;
+}
+
+.btn-color-mode-switch > .alert{
+    display: none;
+    background: #FF9800;
+    border: none;
+    color: #fff;
+}
+
+.btn-color-mode-switch input[type="checkbox"]{
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    margin: 0px;
+}
+
+.btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner{
+    background: #fff;
+    color: #fff;
+}
+
+.btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner:after{
+    content: "Importance";
+    left: 95px;
+    background: #fff;
+}
+
+.btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner:before{
+    content: "Attributions";
+    right: auto;
+    left: 20px;
+}
+
+.btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner{
+    background: #E0E0E0;
+    color: #000;
+}
+
+.btn-color-mode-switch input[type="checkbox"]:checked ~ .alert{
+    display: block;
+}
+}
