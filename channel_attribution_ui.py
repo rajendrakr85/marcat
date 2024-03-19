@@ -145,7 +145,7 @@ external_stylesheets = [
 
 # Altimetrik logo image
 # altimetrik_logo = r'D:\User\Marketing and Sales Analytics\Marketing channel attribution\MarketingChannelAttribution_12_05_2022\images\logo.png'
-altimetrik_logo = 'images/logo.png'
+altimetrik_logo = 'images/img.png'
 altimetrik_logo = base64.b64encode(open(altimetrik_logo, 'rb').read())
 
 

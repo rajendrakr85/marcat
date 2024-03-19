@@ -19,33 +19,32 @@ class channel_attributions():
         start = datetime.now()
         is_coverted_df = pd.DataFrame(data_df.groupby('channel_name').sum().reset_index())
         paths_lis = []
-        #visit_id_lis = []
+        visit_id_lis = []
         first_touch_pnt = []
         last_touch_pnt = []
         for data_tupl, is_converted in zip(data_df.groupby('channel_name'),
                                            is_coverted_df["is_converted"]):
-            channel_lis = data_tupl[1].unique().tolist()
+            channel_lis = data_tupl[1]['channel_name']  #data_tupl[1].unique().tolist()
             if is_converted:
                 conv = "Conversion"
             else:
                 conv = "NULL"
-            #visit_id_lis.append(data_tupl[0])
+            visit_id_lis.append(data_tupl[0])
             first_touch_pnt.append(channel_lis[0])
             last_touch_pnt.append(channel_lis[-1])
             path = "Start > " + " > ".join(channel_lis) + " > " + conv
             paths_lis.append(path)
 
         test_df = pd.DataFrame()
-        #test_df["visitor_id"] = visit_id_lis
+        test_df["visitor_id"] = visit_id_lis
         test_df["Paths_journey"] = paths_lis
         test_df["First Touch"] = first_touch_pnt
         test_df["Last Touch"] = last_touch_pnt
-        #test_df["is_converted"] = is_coverted_df["is_converted"]
+        test_df["is_converted"] = is_coverted_df["is_converted"]
         test_df["Paths"] = test_df["Paths_journey"].str.replace("Start > ", "")
         test_df["Paths"] = test_df["Paths"].str.replace(" > NULL", "")
         test_df["Paths"] = test_df["Paths"].str.replace(" > Conversion", "")
         test_df["Paths_len"] = test_df["Paths"].str.split(" > ").str.len()
-        #test_df[["visitor_id", "Paths_journey"]].to_csv("results/Customer_journeys.csv", index=False)
         test_df[["visitor_id", "Paths_journey"]].to_csv("results/Customer_journeys.csv", index=False)
 
         end = datetime.now()
