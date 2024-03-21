@@ -1,6 +1,6 @@
 import dash
 from dash import dcc, html
-import dash_bootstrap_components as dbc
+import flask
 from dash import dash_table
 from dash.dependencies import Input, Output
 import pandas as pd
@@ -8,13 +8,12 @@ import content_based
 import plotly.graph_objs as go
 import base64
 
-cdf = pd.read_csv('Data_files/channel_data.csv')
+cdf = pd.read_csv('data_files/channel_data.csv')
 cdf.drop_duplicates(inplace=True, keep="last")
 converted_products = cdf.groupby(['category', 'price', 'channel_name', 'product_name'])[
     'conversion'].sum().reset_index()
 max_converted_products = converted_products.loc[converted_products.groupby(['channel_name'])['conversion'].idxmax()]
 max_converted_products.index = range(len(max_converted_products))
-
 
 app = dash.Dash(__name__)
 
@@ -30,8 +29,7 @@ app.layout = html.Div([
                 html.Li(html.A('Home', href='/', style={'text-decoration': 'none', 'color': '#333'})),
                 html.Li(html.A('About', href='/about', style={'text-decoration': 'none', 'color': '#333'})),
                 html.Li(html.A('Contact', href='/contact', style={'text-decoration': 'none', 'color': '#333'}))
-            ], style={'list-style-type': 'none', 'padding': 0, 'margin': 0}),
-            html.Div(id='page-content')
+            ], style={'list-style-type': 'none', 'padding': 0, 'margin': 0})
         ],
         style={'background-color': '#f0f0f0', 'padding': '20px', 'width': '200px', 'height': '100vh',
                'position': 'fixed', 'left': 0, 'top': 0}
@@ -58,7 +56,7 @@ app.layout = html.Div([
                             )
                         ],
                         'layout': {
-                            'title': 'Pie Chart',
+                            'title': 'Pie Chart on Conversion',
                             'margin': dict(t=50, b=0, l=0, r=0),
                             'legend': dict(orientation='h', x=0.2, y=-0.1),
                             'height': 300
@@ -77,7 +75,7 @@ app.layout = html.Div([
                             )
                         ],
                         'layout': {
-                            'title': 'Bar Chart',
+                            'title': 'Bar Chart on Conversion',
                             'margin': dict(t=50, b=50, l=50, r=50),
                             'height': 300
                         }
@@ -87,6 +85,12 @@ app.layout = html.Div([
 
             html.Div([
                 html.H1('Top Product on Channels'),
+                html.Div([
+                    html.A(html.Button('Download final channel data and recommended products on channels'),
+                           id='btn-xlsx-download', href='/download-file')
+                ], style={'display': 'block', 'margin-bottom': '20px', 'align': 'right', 'color': '#fff',
+                          'border': '10px', 'padding': '10px 20px',
+                          'cursor': 'pointer', 'border-radius': '20px', 'font-size': '16px'}),
                 dash_table.DataTable(
                     id='table1',
                     columns=[{'name': 'Category', 'id': 'category'}, {'name': 'Price', 'id': 'price'},
@@ -135,6 +139,10 @@ def update_recommendations(active_cell):
         table_rows = [{'Row Number': i + 1, 'Recommended_Products': product} for i, product in
                       enumerate(recommended_products)]
 
+        with pd.ExcelWriter('results/final_data.xlsx') as writer:
+            max_converted_products.to_excel(writer, sheet_name='Final products on each chanel', index=False)
+            pd.DataFrame(recommended_products).to_excel(writer, sheet_name='Recommended Products', index=False)
+
         subtable = dash_table.DataTable(
             id='subtable',
             columns=[{'name': 'Row Number', 'id': 'Row Number'},
@@ -148,30 +156,15 @@ def update_recommendations(active_cell):
 
         return subtable
     else:
-        return html.H1('No Product Recommended', style={'textAlign': 'center', 'fontSize': '32px', 'color': 'red'})
+        return html.H1('No Product Recommended on ' + channel_product['channel_name'],
+                       style={'textAlign': 'center', 'fontSize': '32px', 'color': 'red'})
 
 
-def menu_link(pathname):
-    if pathname == '/':
-        return html.Div([
-            html.H1('Home Page'),
-            html.P('Welcome to the Home Page!')
-        ])
-    elif pathname == '/about':
-        return html.Div([
-            html.H1('About Page'),
-            html.P('Learn more about us here!')
-        ])
-    elif pathname == '/contact':
-        return html.Div([
-            html.H1('Contact Page'),
-            html.P('Contact us for any inquiries!')
-        ])
-    else:
-        return html.Div([
-            html.H1('Page not found'),
-            html.P('The page you are looking for does not exist.')
-        ])
+@app.server.route("/download-file")
+def download_file():
+    # Path to the file to be downloaded
+    file_path = "results/final_data.xlsx"
+    return flask.send_file(file_path, as_attachment=True)
 
 
 # Run the app
